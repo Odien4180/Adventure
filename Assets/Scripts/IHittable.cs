@@ -1,12 +1,10 @@
-using UnityEngine;
-
 public class HitContainer
 {
     private int damage;
     public int Damage => damage;
 }
 
-public interface IHitPipeline
+public interface IHittable
 {
     void Hit(HitContainer hitContainer);
 }

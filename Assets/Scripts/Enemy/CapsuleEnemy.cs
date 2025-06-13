@@ -1,29 +1,10 @@
-using System;
+using UnityEngine;
 
 public class CapsuleEnemy : EnemyBase
 {
-    private class CapsuleEnemyHitPipeline : IHitPipeline, IDisposable
+    public override void Hit(HitContainer hitContainer)
     {
-        private CapsuleEnemy enemy;
-        public CapsuleEnemyHitPipeline(CapsuleEnemy enemy)
-        {
-            this.enemy = enemy;
-        }
-
-        public void Hit(HitContainer hitContainer)
-        {
-
-        }
-
-        public void Dispose()
-        {
-            enemy = null;
-        }
-    }
-
-    private void Start()
-    {
-        Hittable = new CapsuleEnemyHitPipeline(this);
+        FloatingText.Create(hitContainer.Damage.ToString(), transform.position + new Vector3(0, 1, 0), .5f);
     }
 }
 

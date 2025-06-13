@@ -12,6 +12,16 @@ public class FloatingText : MonoBehaviour
 
     private float startTime;
 
+    public static FloatingText Create(string text, Vector3 position, float radius = 0f, Transform parent = null)
+    {
+        var floatingText = Instantiate(Resources.Load<FloatingText>("Prefabs/FloatingText"));
+
+        floatingText.transform.position = radius > 0f ? position.RandomPositionInSphere(radius) : position;
+        floatingText.Text.text = text;
+
+        return floatingText;
+    }
+
     private void Start()
     {
         startTime = Time.realtimeSinceStartup;

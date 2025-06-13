@@ -67,6 +67,14 @@ public class CharacterController : MonoBehaviour
                     animator.CrossFade(ATTACK02_STATE, 0f);
                 else
                     animator.CrossFade(ATTACK01_STATE, 0f);
+
+                //TODO: Change attack code
+                var hitCenterPos = characterGo.transform.position + characterGo.transform.forward;
+                foreach (var hittable in hitCenterPos.OverlapSphere<IHittable>(0.5f))
+                {
+                    hittable.Hit(new HitContainer());
+                }
+                ////
                 stackedKeycode = KeyCode.None;
             }
             else if (state.normalizedTime > 1.0f)
@@ -80,6 +88,14 @@ public class CharacterController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             animator.CrossFade(ATTACK01_HASH, 0f);
+
+            //TODO: Change attack code
+            var hitCenterPos = characterGo.transform.position + characterGo.transform.forward;
+            foreach (var hittable in hitCenterPos.OverlapSphere<IHittable>(0.5f))
+            {
+                hittable.Hit(new HitContainer());
+            }
+            ////
             return;
         }
 
